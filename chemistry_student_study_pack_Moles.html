@@ -1,0 +1,201 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .nav { display: flex; gap: 6px; margin-bottom: 1.5rem; flex-wrap: wrap; padding-top: 1rem; }
+  .nav button { padding: 8px 20px; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md, 8px); background: var(--color-background-primary); color: var(--color-text-secondary); font-size: 14px; cursor: pointer; transition: all 0.15s; }
+  .nav button.active { background: #E6F1FB; color: #185FA5; border-color: #378ADD; font-weight: 500; }
+  .nav button:hover:not(.active) { background: var(--color-background-secondary); }
+  .section { display: none; }
+  .section.active { display: block; }
+  h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 1rem; }
+  h3 { font-size: 15px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.5rem; }
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg, 12px); padding: 1rem 1.25rem; margin-bottom: 1rem; }
+  .card-blue { background: #E6F1FB; border-color: #B5D4F4; }
+  .card-green { background: #EAF3DE; border-color: #C0DD97; }
+  .card-amber { background: #FAEEDA; border-color: #FAC775; }
+  .formula-box { background: var(--color-background-secondary); border-radius: var(--border-radius-md, 8px); padding: 0.75rem 1rem; margin: 0.5rem 0; font-family: var(--font-mono, monospace); font-size: 14px; color: var(--color-text-primary); border-left: 3px solid #378ADD; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: var(--border-radius-md, 8px); font-size: 12px; font-weight: 500; margin-bottom: 0.5rem; }
+  .badge-blue { background: #E6F1FB; color: #185FA5; }
+  .badge-green { background: #EAF3DE; color: #3B6D11; }
+  .badge-amber { background: #FAEEDA; color: #854F0B; }
+  p { font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 0.5rem; }
+  .step { display: flex; gap: 12px; margin-bottom: 0.75rem; align-items: flex-start; }
+  .step-num { width: 24px; height: 24px; border-radius: 50%; background: #E6F1FB; color: #185FA5; font-size: 12px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .step p { margin: 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 6px 10px; font-weight: 500; color: var(--color-text-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); }
+  td { padding: 7px 10px; color: var(--color-text-primary); border-bottom: 0.5px solid var(--color-border-tertiary); }
+  tr:last-child td { border-bottom: none; }
+  .q-item { margin-bottom: 1rem; }
+  .q-stem { font-size: 14px; color: var(--color-text-primary); font-weight: 500; margin-bottom: 0.5rem; line-height: 1.5; }
+  .q-choices label { display: block; padding: 7px 10px; border-radius: var(--border-radius-md, 8px); margin-bottom: 4px; font-size: 13px; color: var(--color-text-secondary); cursor: pointer; border: 0.5px solid transparent; transition: background 0.1s; }
+  .q-choices label:hover { background: var(--color-background-secondary); }
+  .q-choices input { margin-right: 8px; }
+  .check-btn { padding: 8px 18px; background: #E6F1FB; color: #185FA5; border: 0.5px solid #378ADD; border-radius: var(--border-radius-md, 8px); font-size: 13px; font-weight: 500; cursor: pointer; margin-top: 0.75rem; }
+  .check-btn:hover { background: #B5D4F4; }
+  .feedback { margin-top: 0.5rem; padding: 8px 12px; border-radius: var(--border-radius-md, 8px); font-size: 13px; display: none; }
+  .feedback.correct { background: #EAF3DE; color: #3B6D11; border: 0.5px solid #C0DD97; }
+  .feedback.wrong { background: #FCEBEB; color: #A32D2D; border: 0.5px solid #F7C1C1; }
+  .score-box { background: var(--color-background-secondary); border-radius: var(--border-radius-lg, 12px); padding: 1.5rem; text-align: center; margin-top: 1rem; display: none; }
+  .score-big { font-size: 40px; font-weight: 500; color: #185FA5; }
+  .score-label { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 0.5rem; }
+</style>
+
+<div class="nav">
+  <button class="active" onclick="show('study', this)">📖 Study guide</button>
+  <button onclick="show('practice', this)">✏️ Practice quiz</button>
+</div>
+
+<!-- STUDY GUIDE -->
+<div id="study" class="section active">
+  <h2>Study guide — the mole &amp; stoichiometry</h2>
+
+  <div class="card card-blue">
+    <span class="badge badge-blue">Core constant</span>
+    <h3>Avogadro's number &amp; the mole</h3>
+    <p>One mole = 6.022 × 10²³ particles (atoms, molecules, ions, etc.). It is the SI unit for amount of substance — think of it like a "dozen," but for incredibly tiny particles.</p>
+    <div class="formula-box">1 mol = 6.022 × 10²³ particles</div>
+  </div>
+
+  <div class="card">
+    <span class="badge badge-amber">Topic 1</span>
+    <h3>Mole ↔ gram conversion (molar mass)</h3>
+    <p>Molar mass (g/mol) = sum of atomic masses from the periodic table.</p>
+    <div class="formula-box">mass (g) = moles × molar mass (g/mol)<br>moles = mass (g) ÷ molar mass (g/mol)</div>
+    <p style="margin-top:0.5rem;font-weight:500;color:var(--color-text-primary);">Worked example — H₂O (M = 18.02 g/mol):</p>
+    <div class="step"><div class="step-num">1</div><p>Find molar mass: H = 2×1.008 = 2.016, O = 16.00 → M = 18.02 g/mol</p></div>
+    <div class="step"><div class="step-num">2</div><p>Mass of 3.00 mol: 3.00 × 18.02 = <strong>54.06 g</strong></p></div>
+    <div class="step"><div class="step-num">3</div><p>Moles in 36.0 g: 36.0 ÷ 18.02 = <strong>2.00 mol</strong></p></div>
+  </div>
+
+  <div class="card">
+    <span class="badge badge-green">Topic 2</span>
+    <h3>Mole ↔ volume (gases at STP)</h3>
+    <p>At STP (0 °C, 1 atm), any ideal gas occupies 22.4 L per mole.</p>
+    <div class="formula-box">volume (L) = moles × 22.4 L/mol<br>moles = volume (L) ÷ 22.4 L/mol</div>
+    <p style="margin-top:0.5rem;">Example: 2.50 mol CO₂ at STP → 2.50 × 22.4 = <strong>56.0 L</strong></p>
+  </div>
+
+  <div class="card">
+    <span class="badge badge-blue">Topic 3</span>
+    <h3>Mass percent composition</h3>
+    <p>Mass percent tells you what fraction of a compound's mass comes from each element.</p>
+    <div class="formula-box">% element = (mass of element in 1 mol ÷ molar mass of compound) × 100</div>
+    <p style="margin-top:0.5rem;">Example for H₂O: %H = (2.016 ÷ 18.02) × 100 = <strong>11.2%</strong> &nbsp;|&nbsp; %O = (16.00 ÷ 18.02) × 100 = <strong>88.8%</strong></p>
+  </div>
+
+  <div class="card">
+    <span class="badge badge-amber">Topic 4</span>
+    <h3>Empirical formula</h3>
+    <p>The simplest whole-number ratio of atoms in a compound.</p>
+    <div class="step"><div class="step-num">1</div><p>If given % composition, assume a 100 g sample → % becomes grams</p></div>
+    <div class="step"><div class="step-num">2</div><p>Divide each element's mass by its molar mass → moles of each element</p></div>
+    <div class="step"><div class="step-num">3</div><p>Divide all values by the smallest mole value to get ratios</p></div>
+    <div class="step"><div class="step-num">4</div><p>If ratios aren't whole numbers, multiply all by the same integer (×2, ×3…)</p></div>
+    <p style="margin-top:0.5rem;font-weight:500;color:var(--color-text-primary);">Example: 40.0% C, 6.7% H, 53.3% O</p>
+    <div class="formula-box">C: 40.0/12.01 = 3.33 mol &nbsp; H: 6.7/1.008 = 6.65 mol &nbsp; O: 53.3/16.00 = 3.33 mol<br>Divide by 3.33 → C:1, H:2, O:1 → Empirical formula: CH₂O</div>
+  </div>
+
+  <div class="card">
+    <span class="badge badge-green">Topic 5</span>
+    <h3>Molecular formula</h3>
+    <p>The actual number of atoms — a whole-number multiple of the empirical formula.</p>
+    <div class="formula-box">n = molar mass of compound ÷ empirical formula mass<br>Molecular formula = (empirical formula) × n</div>
+    <p style="margin-top:0.5rem;">Example: Empirical CH₂O (mass = 30.03 g/mol), actual molar mass = 180.2 g/mol<br>n = 180.2 ÷ 30.03 ≈ 6 → Molecular formula: <strong>C₆H₁₂O₆</strong></p>
+  </div>
+
+  <div class="card card-amber">
+    <h3>Quick-reference conversion table</h3>
+    <table>
+      <thead><tr><th>From</th><th>To</th><th>Multiply by</th></tr></thead>
+      <tbody>
+        <tr><td>moles</td><td>grams</td><td>molar mass (g/mol)</td></tr>
+        <tr><td>grams</td><td>moles</td><td>÷ molar mass (g/mol)</td></tr>
+        <tr><td>moles</td><td>particles</td><td>6.022 × 10²³</td></tr>
+        <tr><td>particles</td><td>moles</td><td>÷ 6.022 × 10²³</td></tr>
+        <tr><td>moles of gas (STP)</td><td>liters</td><td>22.4 L/mol</td></tr>
+        <tr><td>liters of gas (STP)</td><td>moles</td><td>÷ 22.4 L/mol</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PRACTICE QUIZ -->
+<div id="practice" class="section">
+  <h2>Practice quiz</h2>
+  <p style="margin-bottom:1.25rem;">10 questions — select an answer and click <strong>Check</strong> for instant feedback.</p>
+  <div id="pq"></div>
+  <button class="check-btn" onclick="scoreAll()" style="margin-top:0.25rem;">See my final score</button>
+  <div class="score-box" id="pscore">
+    <div class="score-big" id="pscore-val"></div>
+    <div class="score-label">out of 10</div>
+    <p id="pscore-msg"></p>
+  </div>
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+const pqs = [
+  { q: "How many particles are in 2.00 moles of NaCl?", choices: ["1.20 × 10²⁴","6.02 × 10²³","3.01 × 10²³","2.41 × 10²⁴"], ans: 0, exp: "2.00 mol × 6.022 × 10²³ = 1.20 × 10²⁴ formula units." },
+  { q: "What is the molar mass of Ca(OH)₂?", choices: ["57.09 g/mol","74.10 g/mol","56.08 g/mol","90.10 g/mol"], ans: 1, exp: "Ca=40.08, O×2=32.00, H×2=2.016 → 74.10 g/mol." },
+  { q: "How many grams are in 0.500 mol of NaCl (M = 58.44 g/mol)?", choices: ["116.88 g","29.22 g","58.44 g","14.61 g"], ans: 1, exp: "0.500 × 58.44 = 29.22 g." },
+  { q: "At STP, what volume does 3.00 mol of O₂ occupy?", choices: ["22.4 L","44.8 L","67.2 L","11.2 L"], ans: 2, exp: "3.00 × 22.4 = 67.2 L." },
+  { q: "A compound is 40.0% C, 6.7% H, and 53.3% O by mass. What is its empirical formula?", choices: ["CH₂O","C₂H₄O","CHO","C₂H₄O₂"], ans: 0, exp: "C: 40.0/12.01=3.33, H: 6.7/1.008=6.65, O: 53.3/16.00=3.33. Divide by 3.33 → 1:2:1 → CH₂O." },
+  { q: "The empirical formula of a compound is CH₂ and its molar mass is 56.11 g/mol. What is the molecular formula?", choices: ["CH₂","C₂H₄","C₃H₆","C₄H₈"], ans: 3, exp: "Empirical mass = 14.03. n = 56.11 ÷ 14.03 ≈ 4. Molecular formula = C₄H₈." },
+  { q: "What is the mass percent of oxygen in CO₂ (M = 44.01 g/mol)?", choices: ["27.3%","36.4%","72.7%","50.0%"], ans: 2, exp: "2×16.00 = 32.00 g O. (32.00 ÷ 44.01) × 100 = 72.7%." },
+  { q: "How many moles are in 90.0 g of H₂O (M = 18.02 g/mol)?", choices: ["4.99 mol","9.00 mol","18.0 mol","2.00 mol"], ans: 0, exp: "90.0 ÷ 18.02 = 4.99 mol." },
+  { q: "Which quantity equals one mole of any substance?", choices: ["6.022 × 10²³ particles","22.4 particles","12.0 grams","1.008 grams"], ans: 0, exp: "By definition, 1 mol = 6.022 × 10²³ particles (Avogadro's number)." },
+  { q: "0.800 mol of an ideal gas at STP occupies:", choices: ["28.0 L","17.9 L","44.8 L","8.96 L"], ans: 1, exp: "0.800 × 22.4 = 17.92 ≈ 17.9 L." }
+];
+
+const pqDiv = document.getElementById('pq');
+pqs.forEach((item, i) => {
+  const d = document.createElement('div');
+  d.className = 'q-item card';
+  d.innerHTML = `<div class="q-stem">${i+1}. ${item.q}</div>
+    <div class="q-choices">
+      ${item.choices.map((c,j) => `<label><input type="radio" name="pq${i}" value="${j}"> ${c}</label>`).join('')}
+    </div>
+    <button class="check-btn" onclick="checkPQ(${i},${item.ans},'${item.exp.replace(/'/g,"\\'")}')">Check</button>
+    <div class="feedback" id="fb_${i}"></div>`;
+  pqDiv.appendChild(d);
+});
+
+function checkPQ(i, ans, exp) {
+  const sel = document.querySelector(`input[name="pq${i}"]:checked`);
+  const fb = document.getElementById('fb_' + i);
+  fb.style.display = 'block';
+  if (!sel) { fb.className = 'feedback wrong'; fb.textContent = 'Please select an answer first.'; return; }
+  if (parseInt(sel.value) === ans) {
+    fb.className = 'feedback correct';
+    fb.textContent = '✓ Correct! ' + exp;
+  } else {
+    fb.className = 'feedback wrong';
+    fb.textContent = '✗ Not quite. ' + exp;
+  }
+}
+
+function scoreAll() {
+  let score = 0;
+  pqs.forEach((item, i) => {
+    const sel = document.querySelector(`input[name="pq${i}"]:checked`);
+    if (sel && parseInt(sel.value) === item.ans) score++;
+    checkPQ(i, item.ans, item.exp);
+  });
+  const sb = document.getElementById('pscore');
+  sb.style.display = 'block';
+  document.getElementById('pscore-val').textContent = score;
+  document.getElementById('pscore-msg').textContent =
+    score >= 9 ? 'Excellent! You are well prepared for the quiz.' :
+    score >= 7 ? 'Good work! Review the questions you missed before the quiz.' :
+    score >= 5 ? 'Keep practicing — go back to the study guide for the tricky topics.' :
+    'Take another pass through the study guide, then try again. You can do it!';
+  sb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
