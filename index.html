@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemistry Study Hub</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #f8f7f4; color: #1a1a1a; min-height: 100vh; }
+
+  header { background: #fff; border-bottom: 1px solid #e5e3dd; padding: 2rem 1.5rem 1.5rem; text-align: center; }
+  .header-initials { width: 56px; height: 56px; border-radius: 50%; background: #E6F1FB; color: #185FA5; font-size: 18px; font-weight: 500; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+  header h1 { font-size: 24px; font-weight: 500; color: #1a1a1a; margin-bottom: 4px; }
+  header p { font-size: 14px; color: #6b6b6b; }
+  .teacher-tag { display: inline-block; margin-top: 8px; font-size: 12px; background: #E6F1FB; color: #185FA5; padding: 3px 12px; border-radius: 20px; font-weight: 500; }
+
+  main { max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .unit-card { background: #fff; border: 1px solid #e5e3dd; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 12px; display: flex; align-items: center; gap: 1rem; }
+  .unit-num { width: 40px; height: 40px; border-radius: 8px; background: #f1efe8; color: #5f5e5a; font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .unit-num.active { background: #E6F1FB; color: #185FA5; }
+  .unit-info { flex: 1; min-width: 0; }
+  .unit-title { font-size: 15px; font-weight: 500; color: #1a1a1a; }
+  .unit-sub { font-size: 12px; color: #9b9b9b; margin-top: 2px; }
+  .btn-study { display: inline-block; padding: 7px 16px; background: #185FA5; color: #fff; border-radius: 8px; font-size: 13px; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background 0.15s; }
+  .btn-study:hover { background: #0c447c; }
+  .badge-soon { display: inline-block; padding: 4px 10px; background: #f1efe8; color: #888780; border-radius: 20px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+
+  .section-label { font-size: 11px; font-weight: 500; color: #9b9b9b; letter-spacing: 0.08em; text-transform: uppercase; margin: 1.75rem 0 0.75rem; }
+
+  footer { text-align: center; padding: 2rem; font-size: 12px; color: #b4b2a9; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-initials">MY</div>
+  <h1>Chemistry Study Hub</h1>
+  <p>Welcome to Chemistry! Use this page to find study materials for each unit.</p>
+  <span class="teacher-tag">Ms. Yang</span>
+</header>
+
+<main>
+  <div class="section-label">Course units</div>
+
+  <div class="unit-card">
+    <div class="unit-num">1</div>
+    <div class="unit-info">
+      <div class="unit-title">Introduction</div>
+      <div class="unit-sub">Getting started with chemistry</div>
+    </div>
+    <span class="badge-soon">Coming soon</span>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-num">2</div>
+    <div class="unit-info">
+      <div class="unit-title">Significant figures</div>
+      <div class="unit-sub">Precision and measurement</div>
+    </div>
+    <span class="badge-soon">Coming soon</span>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-num">3</div>
+    <div class="unit-info">
+      <div class="unit-title">Units</div>
+      <div class="unit-sub">SI units and conversions</div>
+    </div>
+    <span class="badge-soon">Coming soon</span>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-num">4</div>
+    <div class="unit-info">
+      <div class="unit-title">Atoms</div>
+      <div class="unit-sub">Atomic structure and the periodic table</div>
+    </div>
+    <span class="badge-soon">Coming soon</span>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-num">5</div>
+    <div class="unit-info">
+      <div class="unit-title">Compounds</div>
+      <div class="unit-sub">Naming and formula writing</div>
+    </div>
+    <span class="badge-soon">Coming soon</span>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-num active">6</div>
+    <div class="unit-info">
+      <div class="unit-title">Moles</div>
+      <div class="unit-sub">Mole conversions, empirical &amp; molecular formulas</div>
+    </div>
+    <a class="btn-study" href="Moles_student_study_pack_Regular Chem.html">Study pack</a>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-num">7</div>
+    <div class="unit-info">
+      <div class="unit-title">Chemical reactions</div>
+      <div class="unit-sub">Reaction types and balancing equations</div>
+    </div>
+    <span class="badge-soon">Coming soon</span>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-num">8</div>
+    <div class="unit-info">
+      <div class="unit-title">Stoichiometry</div>
+      <div class="unit-sub">Mole ratios and limiting reagents</div>
+    </div>
+    <span class="badge-soon">Coming soon</span>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-num">9</div>
+    <div class="unit-info">
+      <div class="unit-title">Kinetics and equilibrium</div>
+      <div class="unit-sub">Reaction rates and Le Chatelier's principle</div>
+    </div>
+    <span class="badge-soon">Coming soon</span>
+  </div>
+
+  <div class="unit-card">
+    <div class="unit-num">10</div>
+    <div class="unit-info">
+      <div class="unit-title">Solutions</div>
+      <div class="unit-sub">Concentration and solubility</div>
+    </div>
+    <span class="badge-soon">Coming soon</span>
+  </div>
+
+</main>
+
+<footer>Ms. Yang · CP Chemistry</footer>
+
+</body>
+</html>
